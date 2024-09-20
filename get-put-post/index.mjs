@@ -41,17 +41,17 @@ const server = createServer((req, res) => {
           res.end(JSON.stringify({ message: `PUT request - Updating item ${itemId}`, data: updatedItem }));
         });
     
-        // DELETE Request
-        } else if (method === 'DELETE' && parsedUrl.pathname.startsWith('/api/items/')) {
-            const itemId = parsedUrl.pathname.split('/').pop();
-            res.statusCode = 200;
-            res.end(JSON.stringify({ message: `DELETE request - Deleting item ${itemId}` }));
+//         // DELETE Request
+//         } else if (method === 'DELETE' && parsedUrl.pathname.startsWith('/api/items/')) {
+//             const itemId = parsedUrl.pathname.split('/').pop();
+//             res.statusCode = 200;
+//             res.end(JSON.stringify({ message: `DELETE request - Deleting item ${itemId}` }));
     
-        // Handle 404 Not Found
-        } else {
-            res.statusCode = 404;
-            res.end(JSON.stringify({ message: 'Route not found' }));
-        }
-})
+//         // Handle 404 Not Found
+//         } else {
+//             res.statusCode = 404;
+//             res.end(JSON.stringify({ message: 'Route not found' }));
+//         }
+// })
 
-server.listen(PORT, () => console.log(`Server is listening here: http://localhost:${PORT}`))
+// server.listen(PORT, () => console.log(`Server is listening here: http://localhost:${PORT}`))
