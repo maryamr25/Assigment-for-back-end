@@ -28,7 +28,18 @@ app.post('/users',(req,res) => {
     res.status(201).json(newUser);
 })
 
-// update the user
+// update user
+app.put('/users/:id',(req,res) => {
+    const id = parseInt(req.params.id);
+    const user = users.findIndex(u => u.id === id);
+    if (user !== -1) {
+        users[user].name = req.body.name;
+        res.status(200).json(users[user]);
+        } else {
+            res.status(404).json({message: "User not found"});
+    }
+})
+// delete the user
 app.delete('/users/:id',(req,res) => {
     const id = parseInt(req.params.id);
     users = users.filter(u => u.id !==id);
