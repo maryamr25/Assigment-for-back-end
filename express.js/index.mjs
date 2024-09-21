@@ -15,7 +15,7 @@ let users = [
 
 // get all user
 app.get('/users',(req,res) => {
-    res.status(200).json(users);
+    res.status(200).json({message: 'All users retrieved successfully', users: users});
 })
 
 //add a new user
@@ -25,7 +25,7 @@ app.post('/users',(req,res) => {
         name : req.body.name,
     };
     users.push(newUser);
-    res.status(201).json(newUser);
+    res.status(201).json({message: 'New user added successfully',user: newUser});
 })
 
 // update user
@@ -40,12 +40,27 @@ app.put('/users/:id',(req,res) => {
     }
 })
 // delete the user
-app.delete('/users/:id',(req,res) => {
-    const id = parseInt(req.params.id);
-    users = users.filter(u => u.id !==id);
-    res.status(204).send();
-})
+// app.delete('/users/:id',(req,res) => {
+//     const id = parseInt(req.params.id);
+//     users = users.filter(u => u.id !==id);
+//     res.status(204).send();
+// })
 
+app.delete('/users/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const userExists = users.some(u => u.id === id);
+  
+    if (userExists) {
+      users = users.filter(u => u.id !== id);
+      res.json({
+        message: `User with ID ${id} deleted successfully`
+      });
+    } else {
+      res.status(404).json({
+        message: `User with ID ${id} not found`
+      });
+    }
+  });
 
 
 // start the server
