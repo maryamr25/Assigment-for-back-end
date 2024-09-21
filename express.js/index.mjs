@@ -28,6 +28,13 @@ app.post('/users',(req,res) => {
     res.status(201).json(newUser);
 })
 
+// update the user
+app.delete('/users/:id',(req,res) => {
+    const id = parseInt(req.params.id);
+    users = users.filter(u => u.id !==id);
+    res.status(204).send();
+})
+
 
 
 // start the server
