@@ -18,7 +18,15 @@ app.get('/users',(req,res) => {
     res.status(200).json(users);
 })
 
-?
+//add a new user
+app.post('/users',(req,res) => {
+    const newUser = {
+        id : users.length + 1,
+        name : req.body.name,
+    };
+    users.push(newUser);
+    res.status(201).json(newUser);
+})
 
 
 
